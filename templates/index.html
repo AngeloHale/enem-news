@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ENEM News - Notícias Atualizadas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">Enem News</a>
+       <nav class="menu">
+                <a href="{{ url_for('home', category='general') }}">Início</a>
+                <a href="{{ url_for('home', category='education') }}">Educação</a>
+                <a href="{{ url_for('home', category='technology') }}">Tecnologia</a>
+                <a href="{{ url_for('home', category='politics') }}">Política</a>
+        </nav>
+    </header> 
+    <!-- Main (Notícias) -->
+    <main id="news-container">
+        {% if articles %}
+            {% for article in articles %}
+                <div class="news-item">
+                    <h2>{{ article.title }}</h2>
+                    <p>{{ article.description }}</p>
+                    <a href="{{ article.url }}" target="_blank">Leia mais</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Desculpe, não há notícias disponíveis no momento.</p>
+        {% endif %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-bottom">
+            <p>© 2024 ENEM News - Angelo Luis</p>
+        </div>
+    </footer>
+</body>
+</html>
